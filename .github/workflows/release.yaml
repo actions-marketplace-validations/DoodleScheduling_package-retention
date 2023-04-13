@@ -4,6 +4,11 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  contents: write # needed to write releases
+  id-token: write # needed for keyless signing
+  packages: write # needed for ghcr access
+
 jobs:
   build:
     name: Build
@@ -21,7 +26,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.DOODLE_OSS_BOT }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Setup Cosign
         uses: sigstore/cosign-installer@9e9de2292db7abb3f51b7f4808d98f0d347a8919 # v3.0.2
       - uses: anchore/sbom-action/download-syft@422cb34a0f8b599678c41b21163ea6088edb2624 # v0.14.1
@@ -32,4 +37,5 @@ jobs:
           version: latest
           args: release --rm-dist --skip-validate
         env:
-          GITHUB_TOKEN: ${{ secrets.DOODLE_OSS_BOT }}
+          RUNNER_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.DOODLE_OSS_BOT}}
