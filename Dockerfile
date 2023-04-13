@@ -1,6 +1,5 @@
-FROM gcr.io/distroless/static:nonroot
+FROM gcr.io/distroless/static:latest
 WORKDIR /
 COPY package-retention package-retention
-USER 65532:65532
 
 ENTRYPOINT ["/package-retention"]
