@@ -37,7 +37,7 @@ code-gen:
 	./hack/code-gen.sh
 
 build:
-	CGO_ENABLED=0 go build -ldflags="-s -w -X main.VERSION=$(VERSION)" -o ./bin/gh-bootstrap-repository ./cmd
+	CGO_ENABLED=0 go build -ldflags="-s -w -X main.VERSION=$(VERSION)" -o ./bin/gh-bootstrap-repository .
 
 .PHONY: install
 install:
