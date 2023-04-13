@@ -33,4 +33,4 @@ outputs:
 
 runs:
   using: 'docker'
-  image: 'ghcr.io/doodlescheduling/package-retention:v1'
+  image: 'docker://ghcr.io/doodlescheduling/package-retention:v1'
