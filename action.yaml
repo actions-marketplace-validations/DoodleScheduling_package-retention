@@ -25,7 +25,7 @@ inputs:
   dry-run:
     description: 'Only attempt to delete, does not actaully delete the versions.'
     required: false
-    default: 'true'
+    default: 'false'
 
 outputs:
   versions:

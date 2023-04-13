@@ -46,13 +46,13 @@ func NewFromInputs(ctx context.Context, action *githubactions.Action) (*Action, 
 	}
 	_ = os.Setenv("GITHUB_TOKEN", token)
 
-	packageName := githubactions.GetInput("package_name")
+	packageName := githubactions.GetInput("package-name")
 	if packageName == "" {
 		return nil, errors.New("missing parameter 'package_name'")
 	}
 
 	age := githubactions.GetInput("age")
-	versionMatch := githubactions.GetInput("version_match")
+	versionMatch := githubactions.GetInput("version-match")
 
 	if versionMatch == "" && age == "" {
 		return nil, errors.New("neither parameter 'age' nor 'version-match' set")
@@ -78,18 +78,18 @@ func NewFromInputs(ctx context.Context, action *githubactions.Action) (*Action, 
 		ageDuration = &a
 	}
 
-	organizationName := strings.ToLower(githubactions.GetInput("organization_name"))
+	organizationName := strings.ToLower(githubactions.GetInput("organization-name"))
 	if organizationName == "" {
 		return nil, errors.New("missing parameter 'organization-name'")
 	}
 
-	packageType := githubactions.GetInput("package_type")
+	packageType := githubactions.GetInput("package-type")
 	if packageType == "" {
 		return nil, errors.New("missing parameter 'package-type'")
 	}
 
 	dryRun := false
-	if dryRunInput := githubactions.GetInput("dry_run"); dryRunInput != "" {
+	if dryRunInput := githubactions.GetInput("dry-run"); dryRunInput != "" {
 		dryRunParsed, err := strconv.ParseBool(dryRunInput)
 		if err != nil {
 			return nil, fmt.Errorf("invalid type for parameter 'dry-run' provided: %w", err)
