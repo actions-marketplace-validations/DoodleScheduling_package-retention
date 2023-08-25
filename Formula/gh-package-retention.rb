@@ -5,20 +5,20 @@
 class GhPackageRetention < Formula
   desc "Package retention for github packages"
   homepage "https://github.com/DoodleScheduling/gh-package-retention"
-  version "2.0.1"
+  version "2.0.2"
 
   on_macos do
-    if Hardware::CPU.arm?
-      url "https://github.com/DoodleScheduling/gh-package-retention/releases/download/v2.0.1/gh-package-retention_2.0.1_darwin_arm64.tar.gz"
-      sha256 "6b805830358406a51940fbd7a8cae3b097c1739bc70f9c6c049800f085c49d82"
+    if Hardware::CPU.intel?
+      url "https://github.com/DoodleScheduling/gh-package-retention/releases/download/v2.0.2/gh-package-retention_2.0.2_darwin_amd64.tar.gz"
+      sha256 "f9d54064657421890515e3ef14a7cf6c6d9f10aa1aa845d68587a26ac0ae8fee"
 
       def install
         bin.install "gh-package-retention"
       end
     end
-    if Hardware::CPU.intel?
-      url "https://github.com/DoodleScheduling/gh-package-retention/releases/download/v2.0.1/gh-package-retention_2.0.1_darwin_amd64.tar.gz"
-      sha256 "1d688350bd68734e919146fcf1b617f420e1ce047f99f68bdd9069e5a2e9cb44"
+    if Hardware::CPU.arm?
+      url "https://github.com/DoodleScheduling/gh-package-retention/releases/download/v2.0.2/gh-package-retention_2.0.2_darwin_arm64.tar.gz"
+      sha256 "9faeb3f001c5f6cd574642f3e09841a72ba1528a98af85582c313054149a6c0c"
 
       def install
         bin.install "gh-package-retention"
@@ -28,16 +28,16 @@ class GhPackageRetention < Formula
 
   on_linux do
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/DoodleScheduling/gh-package-retention/releases/download/v2.0.1/gh-package-retention_2.0.1_linux_arm64.tar.gz"
-      sha256 "6b097bbf6fa2b7bcbfb510c8450c47f8ff3cc2047495d7e6af84fa2ea672966d"
+      url "https://github.com/DoodleScheduling/gh-package-retention/releases/download/v2.0.2/gh-package-retention_2.0.2_linux_arm64.tar.gz"
+      sha256 "8281074d1a077c6d1f3492c94e2983f3bd324e72ba37478eba4a3e928f1cc53b"
 
       def install
         bin.install "gh-package-retention"
       end
     end
     if Hardware::CPU.intel?
-      url "https://github.com/DoodleScheduling/gh-package-retention/releases/download/v2.0.1/gh-package-retention_2.0.1_linux_amd64.tar.gz"
-      sha256 "378f84e62bb3859a2093286dafe1aaded6b675b50fb3f3748f8392c635ac7622"
+      url "https://github.com/DoodleScheduling/gh-package-retention/releases/download/v2.0.2/gh-package-retention_2.0.2_linux_amd64.tar.gz"
+      sha256 "70339cb31f46d593e14237b1ffb65829e4a6c091572a99fd088063f3aa5b15f0"
 
       def install
         bin.install "gh-package-retention"
