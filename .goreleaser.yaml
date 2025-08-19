@@ -1,3 +1,4 @@
+version: 2
 project_name: gh-package-retention
 
 builds:
@@ -81,18 +82,17 @@ docker_manifests:
   - ghcr.io/doodlescheduling/{{ .ProjectName }}:v{{ .Version }}-amd64
   - ghcr.io/doodlescheduling/{{ .ProjectName }}:v{{ .Version }}-arm64v8
 
-brews:
+
+homebrew_casks:
 - ids:
   - gh-package-retention
-  tap:
+  repository:
     owner: doodlescheduling
     name: gh-package-retention
     token: "{{ .Env.GITHUB_TOKEN }}"
   description: Package retention for github packages
   homepage: https://github.com/DoodleScheduling/gh-package-retention
-  folder: Formula
-  test: |
-    system "#{bin}/gh-package-retention -h" 
+  directory: Formula
 
 signs:
 - cmd: cosign
