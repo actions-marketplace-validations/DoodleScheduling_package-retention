@@ -25,7 +25,7 @@ test:
 
 GOLANGCI_LINT = $(GOBIN)/golangci-lint
 golangci-lint: ## Download golint locally if necessary.
-	$(call go-install-tool,$(GOLANGCI_LINT),github.com/golangci/golangci-lint/cmd/golangci-lint@v1.52.2)
+	$(call go-install-tool,$(GOLANGCI_LINT),github.com/golangci/golangci-lint/v2/cmd/golangci-lint@v2.1.2)
 
 lint: golangci-lint
 	golangci-lint run
@@ -37,7 +37,7 @@ code-gen:
 	./hack/code-gen.sh
 
 build:
-	CGO_ENABLED=0 go build -ldflags="-s -w -X main.VERSION=$(VERSION)" -o ./bin/gh-bootstrap-repository .
+	CGO_ENABLED=0 go build -ldflags="-s -w -X main.VERSION=$(VERSION)" -o ./bin/gh-package-retention .
 
 .PHONY: install
 install:

@@ -1,18 +1,21 @@
-project_name: package-retention
+version: 2
+project_name: gh-package-retention
 
 builds:
-- id: package-retention
-  binary: package-retention
+- id: gh-package-retention
+  binary: gh-package-retention
   goos:
   - linux
+  - darwin
+  - windows
   env:
   - CGO_ENABLED=0
 
 archives:
-- id: package-retention
-  name_template: "package-retention_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+- id: gh-package-retention
+  name_template: "gh-package-retention_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
   builds:
-  - package-retention
+  - gh-package-retention
 
 checksum:
   name_template: 'checksums.txt'
@@ -36,7 +39,7 @@ dockers:
   dockerfile: Dockerfile
   use: buildx
   ids:
-  - package-retention
+  - gh-package-retention
   build_flag_templates:
   - --platform=linux/amd64
   - --label=org.opencontainers.image.title={{ .ProjectName }}
@@ -53,7 +56,7 @@ dockers:
   dockerfile: Dockerfile
   use: buildx
   ids:
-  - package-retention
+  - gh-package-retention
   build_flag_templates:
   - --platform=linux/arm64/v8
   - --label=org.opencontainers.image.title={{ .ProjectName }}
@@ -78,6 +81,18 @@ docker_manifests:
   image_templates:
   - ghcr.io/doodlescheduling/{{ .ProjectName }}:v{{ .Version }}-amd64
   - ghcr.io/doodlescheduling/{{ .ProjectName }}:v{{ .Version }}-arm64v8
+
+
+homebrew_casks:
+- ids:
+  - gh-package-retention
+  repository:
+    owner: doodlescheduling
+    name: gh-package-retention
+    token: "{{ .Env.GITHUB_TOKEN }}"
+  description: Package retention for github packages
+  homepage: https://github.com/DoodleScheduling/gh-package-retention
+  directory: Formula
 
 signs:
 - cmd: cosign
